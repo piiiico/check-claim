@@ -38,7 +38,14 @@ export function htmlToText(html: string): string {
     .replace(/!\[[^\]]*\]\([^)]*\)/g, " ").replace(/\[([^\]]*)\]\((?:https?:|\/)[^)]*\)/g, "$1"); // reader-markdown links -> text
 }
 
+// One retry on 429/503: the reader and archive paths rate-limit shared egress (Cloudflare Workers) in bursts.
 async function get(url: string, ua = UA, ms = 15000): Promise<{ status: number; body: string }> {
+  const r = await get1(url, ua, ms);
+  if (r.status !== 429 && r.status !== 503) return r;
+  await new Promise(res => setTimeout(res, 2500));
+  return get1(url, ua, ms);
+}
+async function get1(url: string, ua: string, ms: number): Promise<{ status: number; body: string }> {
   try {
     const r = await fetch(url, { headers: { "User-Agent": ua, Accept: "text/html,application/xhtml+xml,text/plain,*/*" }, redirect: "follow", signal: AbortSignal.timeout(ms) });
     return { status: r.status, body: await r.text() };

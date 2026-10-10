@@ -10,6 +10,13 @@ function htmlToText(html) {
   return html.replace(/<script[\s\S]*?<\/script>/gi, " ").replace(/<style[\s\S]*?<\/style>/gi, " ").replace(/<!--[\s\S]*?-->/g, " ").replace(/<[^>]+>/g, " ").replace(/!\[[^\]]*\]\([^)]*\)/g, " ").replace(/\[([^\]]*)\]\((?:https?:|\/)[^)]*\)/g, "$1");
 }
 async function get(url, ua = UA, ms = 15000) {
+  const r = await get1(url, ua, ms);
+  if (r.status !== 429 && r.status !== 503)
+    return r;
+  await new Promise((res) => setTimeout(res, 2500));
+  return get1(url, ua, ms);
+}
+async function get1(url, ua, ms) {
   try {
     const r = await fetch(url, { headers: { "User-Agent": ua, Accept: "text/html,application/xhtml+xml,text/plain,*/*" }, redirect: "follow", signal: AbortSignal.timeout(ms) });
     return { status: r.status, body: await r.text() };

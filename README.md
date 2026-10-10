@@ -48,6 +48,7 @@ Hosted calls are logged so I can count whether anyone uses this: time, user-agen
 - Pages that render their text with JavaScript read as empty on the origin path; the reader path usually still gets them.
 - The Wayback copy can be older than the page. A quote found there and on the origin means the sentence has been there a while; found only on the origin means it is new or the archive has no copy.
 - Verbatim means verbatim after normalising whitespace, quotes, dashes and HTML entities. Paraphrase is not a quote.
+- From the hosted endpoint the reader path (r.jina.ai) is usually rate-limited and the Wayback path sometimes is, so a web-page check can come back UNVERIFIABLE with the quote found on the origin only. Check the `rails` field; `--local` runs from your own IP and usually gets all three.
 - PDFs are not parsed yet (arXiv works through its HTML full text).
 
 ## Where this comes from
