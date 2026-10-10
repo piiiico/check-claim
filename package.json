@@ -1,0 +1,16 @@
+{
+  "name": "check-claim",
+  "version": "0.1.0",
+  "description": "Check whether a source really says what a claim says it says, before you publish. MCP server + CLI, no key.",
+  "type": "module",
+  "bin": { "check-claim": "dist/cli.js" },
+  "files": ["dist", "src", "README.md"],
+  "scripts": {
+    "build": "bun build src/cli.ts --target node --outfile dist/cli.js",
+    "test": "bun test src",
+    "deploy": "wrangler deploy"
+  },
+  "repository": { "type": "git", "url": "https://github.com/piiiico/check-claim" },
+  "license": "MIT",
+  "engines": { "node": ">=18" }
+}

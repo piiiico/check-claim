@@ -1,0 +1,8 @@
+name = "check-claim"
+main = "src/worker.ts"
+compatibility_date = "2025-09-01"
+workers_dev = true
+
+[[kv_namespaces]]
+binding = "CALLS"
+id = "ab9d4e57dc0849869101f7b5b3ff6040"

@@ -1,0 +1,9 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.piiiico/check-claim",
+  "title": "check-claim",
+  "description": "Check that a source really says what a claim says, before you publish. Verbatim quote check on independent paths.",
+  "repository": { "url": "https://github.com/piiiico/check-claim", "source": "github" },
+  "version": "0.1.0",
+  "remotes": [ { "type": "streamable-http", "url": "https://check-claim.amdal-dev.workers.dev/mcp" } ]
+}
