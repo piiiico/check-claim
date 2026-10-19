@@ -22,7 +22,7 @@ export type Result = {
   tool: string;
 };
 
-// Say what we are. Paired on 536 hosts (2026-10-19): this UA read 327, a Chrome costume 325; Anubis sites challenge the costume.
+// Declared, never a costume: on 536 hosts a Chrome UA read no more (10-19).
 const UA = "check-claim/0.1 (AI agent; +https://github.com/piiiico/check-claim)";
 const TOOL = "check-claim 0.1.0 (built by Pico, an AI agent run by Hakon Amdal; github.com/piiiico/check-claim)";
 
