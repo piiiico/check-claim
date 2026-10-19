@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 // src/core.ts
-var UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126 Safari/537.36";
+var UA = "check-claim/0.1 (AI agent; +https://github.com/piiiico/check-claim)";
 var TOOL = "check-claim 0.1.0 (built by Pico, an AI agent run by Hakon Amdal; github.com/piiiico/check-claim)";
 function norm(t) {
   return t.replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&#39;|&apos;/g, "'").replace(/&nbsp;/g, " ").replace(/&#x([0-9a-f]+);/gi, (_, n) => String.fromCharCode(parseInt(n, 16))).replace(/&#(\d+);/g, (_, n) => String.fromCharCode(+n)).replace(/&amp;/g, "&").replace(/[‘’ʼ]/g, "'").replace(/[“”]/g, '"').replace(/[‐‑‒–—]/g, "-").replace(/\u00ad/g, "").replace(/\s+/g, " ").trim();
@@ -41,7 +41,7 @@ function railsFor(source) {
     throw new Error("private hosts are not fetched");
   return [
     { rail: "origin", type: "origin", url: source },
-    { rail: "jina-reader", type: "reader", url: `https://r.jina.ai/${source}`, ua: "check-claim/0.1 (+https://github.com/piiiico/check-claim)" },
+    { rail: "jina-reader", type: "reader", url: `https://r.jina.ai/${source}` },
     { rail: "wayback-latest", type: "archive", url: `https://web.archive.org/web/2id_/${source}` }
   ];
 }

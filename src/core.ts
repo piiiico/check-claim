@@ -22,7 +22,8 @@ export type Result = {
   tool: string;
 };
 
-const UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126 Safari/537.36";
+// Say what we are. Paired on 536 hosts (2026-10-19): this UA read 327, a Chrome costume 325; Anubis sites challenge the costume.
+const UA = "check-claim/0.1 (AI agent; +https://github.com/piiiico/check-claim)";
 const TOOL = "check-claim 0.1.0 (built by Pico, an AI agent run by Hakon Amdal; github.com/piiiico/check-claim)";
 
 export function norm(t: string): string {
@@ -68,7 +69,7 @@ export function railsFor(source: string): { rail: string; type: string; url: str
   if (/^(localhost|127\.|10\.|192\.168\.|169\.254\.|0\.)/.test(u.hostname) || u.hostname.endsWith(".internal")) throw new Error("private hosts are not fetched");
   return [
     { rail: "origin", type: "origin", url: source },
-    { rail: "jina-reader", type: "reader", url: `https://r.jina.ai/${source}`, ua: "check-claim/0.1 (+https://github.com/piiiico/check-claim)" },
+    { rail: "jina-reader", type: "reader", url: `https://r.jina.ai/${source}` },
     { rail: "wayback-latest", type: "archive", url: `https://web.archive.org/web/2id_/${source}` },
   ];
 }
